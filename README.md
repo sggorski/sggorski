@@ -1,5 +1,7 @@
 # Hi there 👋
 
+Here is my new personal page: [About me](https://sggorski.github.io/about)
+
 Here are some ideas to get you started:
 
 - 🔭 I’m currently working on a group project, in which we create our own game.
