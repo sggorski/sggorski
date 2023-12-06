@@ -2,7 +2,7 @@
 
 Here is my new personal page: [About me](https://sggorski.github.io/about)
 
-Link to a very interesting article: [Link](https://paperswithcode.com/paper/handrefiner-refining-malformed-hands-in)
+Link to a very interesting article: [Link](https://paperswithcode.com/paper/object-recognition-as-next-token-prediction)
 
 Here are some ideas to get you started:
 
