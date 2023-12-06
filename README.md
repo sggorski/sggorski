@@ -1,6 +1,7 @@
 # Hi there 👋
 
 Here is my new personal page: [About me](https://sggorski.github.io/about)
+Link to a very interesting article: [Link](https://paperswithcode.com/paper/handrefiner-refining-malformed-hands-in)
 
 Here are some ideas to get you started:
 
