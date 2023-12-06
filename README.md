@@ -4,6 +4,8 @@ Here is my new personal page: [About me](https://sggorski.github.io/about)
 
 Link to a very interesting article: [Link](https://paperswithcode.com/paper/object-recognition-as-next-token-prediction)
 
+Link to forked repository related to this article: [Link](https://github.com/sggorski/nxtp)
+
 Here are some ideas to get you started:
 
 - 🔭 I’m currently working on a group project, in which we create our own game.
