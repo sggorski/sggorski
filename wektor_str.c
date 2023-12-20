@@ -3,6 +3,7 @@
 #include <malloc.h>
 #include <string.h>
 typedef int (*cmp_data_fp)(const void*, const void*);
+typedef void (*print_data_f)(void*);
 #define MAX_LEN 5
 
 char *read_string()
@@ -21,6 +22,7 @@ typedef struct tagVector {
     size_t size;
     size_t capacity;
     cmp_data_fp cmp_data;
+    print_data_f dump_it;
 } Vector;
 
 // Fukcje "uniwersalne":
@@ -29,7 +31,7 @@ typedef struct tagVector {
 void init_vector(Vector *v, size_t cap, size_t el_size)
 {
     v->size=0;
-    v->element_size= MAX_LEN * el_size;
+    v->element_size= el_size;
     v->capacity=cap;
     v->data=malloc(v->capacity* v->element_size);
 }
@@ -49,7 +51,7 @@ void reserve(Vector* vector, size_t new_cap) {
 }
 
 
-void push_back(Vector* vector, char* val) {
+void push_back(Vector* vector, void* val) {
 
     if (vector->size == vector->capacity) {
         size_t new_cap = vector->capacity * 2;
@@ -57,11 +59,11 @@ void push_back(Vector* vector, char* val) {
     }
 
     char* dest = (char*)vector->data + (vector->size * vector->element_size);
-    memmove(dest, val, vector->element_size);
+    memmove(dest, &val, vector->element_size);
     vector->size++;
 }
 
-void push_front(Vector* vector, char * val) {
+void push_front(Vector* vector, void *val) {
     if (vector->size == vector->capacity) {
         size_t new_cap = vector->capacity * 2;
         reserve(vector, new_cap);
@@ -72,7 +74,7 @@ void push_front(Vector* vector, char * val) {
         memmove(dest, from, vector->element_size);
     }
 
-    memmove(vector->data, val, vector->element_size);
+    memmove(vector->data, &val, vector->element_size);
     vector->size++;
 }
 void dump_data(Vector* vector) {
@@ -85,7 +87,7 @@ void dump_data(Vector* vector) {
 
     for (size_t i = 0; i < vector->size; ++i) {
         void* address = (char*)vector->data + i*vector->element_size;
-        printf("%s ", (char*)address);
+        vector->dump_it(address);
     }
     printf("\n");
 }
@@ -98,7 +100,7 @@ int search_in_vector(const void *pkey, const Vector V) {
     }
     return -1;
 }
-void insert(Vector* vector, size_t position, char *val) {
+void insert(Vector* vector, size_t position, void *val) {
     if (position > vector->size) {
         printf("Zla pozycja\n");
         return;
@@ -115,7 +117,7 @@ void insert(Vector* vector, size_t position, char *val) {
             memmove(dest, from, vector->element_size);
         }
 
-        memmove((char*)vector->data + position * vector->element_size, val, vector->element_size);
+        memmove((char*)vector->data + position * vector->element_size, &val, vector->element_size);
         vector->size++;
 
 
@@ -132,12 +134,13 @@ void erase(Vector* vector, size_t position) {
 
     }
 }
-void erase_value(Vector* vector, char *value) {
+void erase_value(Vector* vector, void *value) {
     size_t i = 0;
     while (i < vector->size) {
         void* address = (char*)vector->data + (i * vector->element_size);
+        char * tekst = *(char**)address;
 
-        if (strcmp(address,value)==0) {
+        if (strcmp(tekst,value)==0) {
             erase(vector, i);
         } else {
             i++;
@@ -157,8 +160,8 @@ void resize_vector(Vector* vector) {
 
 // Funksje "specjalizowane" dla typu danych double:
 int cmp(const void *p1, const void *p2) {
-    char *a = (char *)p1;
-    char *b = (char *)p2;
+    char *a = *(char **)p1;
+    char *b = *(char **)p2;
     return strcmp(a,b);
 }
 
@@ -166,10 +169,17 @@ void sort(Vector* vector) {
     qsort(vector->data, vector->size, vector->element_size, cmp);
 }
 
+void print_data(void *a)
+{
+    printf("%s ",*(char**)a);
+}
+
 
 int main(void) {
     Vector my_vector;
     init_vector(&my_vector,5,sizeof(char*));
+    my_vector.cmp_data=cmp;
+    my_vector.dump_it=print_data;
     reserve(&my_vector,8);
     push_front(&my_vector,read_string());
     push_front(&my_vector,read_string());
@@ -177,10 +187,11 @@ int main(void) {
     dump_data(&my_vector);
     push_back(&my_vector,read_string());
     dump_data(&my_vector);
-    insert(&my_vector,0,read_string());
-    sort(&my_vector);
+    insert(&my_vector,2,read_string());
     dump_data(&my_vector);
     erase(&my_vector,1);
+    dump_data(&my_vector);
+    sort(&my_vector);
     dump_data(&my_vector);
     clear(&my_vector);
      return 0;
