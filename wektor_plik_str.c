@@ -138,7 +138,7 @@ int main(void) {
     init_vector(&my_vector,20,sizeof(struct string*));
     FILE *file = fopen("tekst_linux.txt","r");
     if (file == NULL) {
-        printf("Nie uda³o siê otworzyæ pliku");
+        printf("Nie udaÂ³o siÃª otworzyÃ¦ pliku");
         return 1;
     }
     char buff[200];
