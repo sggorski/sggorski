@@ -49,7 +49,7 @@ void init(List *plist) {
     plist->freeData=NULL;
     plist->compareData=NULL;
 }
-/* zwolnienie pamiêci listy */
+/* zwolnienie pamiÃªci listy */
 void freeList(List *plist) {
     ListElement *current = NULL;
     current = plist->head;
@@ -63,7 +63,7 @@ void freeList(List *plist) {
     plist->head=NULL;
     plist->tail=NULL;
 }
-/* dodaj element na koñcu */
+/* dodaj element na koÃ±cu */
 void pushBack(List *plist, void *data) {
     ListElement *element = (ListElement*)malloc(sizeof(ListElement));
     element->data=data;
@@ -73,7 +73,7 @@ void pushBack(List *plist, void *data) {
     if(!plist->head)plist->head=plist->tail;
     plist->size++;
 }
-/* dodaj element na pocz¹tku */
+/* dodaj element na poczÂ¹tku */
 void pushFront(List *plist, void *data) {
     ListElement *element = (ListElement*)malloc(sizeof(ListElement));
     element->data=data;
@@ -141,7 +141,7 @@ int isEmpty(const List *plist) {
     return plist->size==0;
 }
 
-/* wypisanie zawartoœci */
+/* wypisanie zawartoÅ“ci */
 void dumpList(const List *plist) {
     ListElement *i;
     for(i=plist->head;i!=0;i=i->next){
@@ -177,7 +177,7 @@ int main(void) {
     int count=0;
     FILE *file = fopen("tekst_linux.txt","r");
     if (file == NULL) {
-        printf("Nie uda³o siê otworzyæ pliku");
+        printf("Nie udaÂ³o siÃª otworzyÃ¦ pliku");
         return 1;
     }
     char buff[200];
