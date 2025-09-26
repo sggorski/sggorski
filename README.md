@@ -1,5 +1,7 @@
 # Hi there 👋
 
+![Profile views](https://komarev.com/ghpvc/?username=sggorski&color=blue)
+
 My name is Simon and I'm currently studying Computer Science and Intelligence Systems at the AGH Academy of Cracow.
 
 - 🔭 I’m interested in Data Science and AI.
