@@ -5,7 +5,7 @@
 My name is Simon and I'm currently studying Computer Science and Intelligence Systems at the AGH Academy of Cracow.
 
 - 🔭 I’m interested in Data Science and AI.
-- 💻 Now I'm working with my friends on our own interpreted language that will allow you to generate simple melodies.
+- 💻 Now I'm working with my friends on building a discrete simulation of desire paths emerging in parks. Apart from that we are creating a small IOT system for monitoring the noise. 
 - 👯 I’m looking to collaborate on some other programming projects.
 - 🎸 Aparat from programming my hobbies are tennis, Rubik's cubes, travelling and watching speedway.
   
